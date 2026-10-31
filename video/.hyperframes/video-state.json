@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "b7111fee-e9d7-4a69-90ea-575b1b3bb361",
-  "currentRevision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63",
+  "currentRevision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -29,12 +29,12 @@
       "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/2d/2dc230723fc92c2a8603c73f2a052ad9a5590b3868f9032ac42d67919b264d20"
     },
     "assets/mark-on-dark.svg": {
-      "hash": "7af58d44edf2ea2622b596420e09eab355c3e45bb5d833517d3545d62fb07ceb",
-      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/7a/7af58d44edf2ea2622b596420e09eab355c3e45bb5d833517d3545d62fb07ceb"
+      "hash": "e37af20725431b554b133ccaddecc27ca3ad514289e83e6011e3e3085470d8d8",
+      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/e3/e37af20725431b554b133ccaddecc27ca3ad514289e83e6011e3e3085470d8d8"
     },
     "assets/mark.svg": {
-      "hash": "8a557c5a3e1a36b38013283429f2e97f83227f47ebb5547e44a0ca451a7bd44a",
-      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/8a/8a557c5a3e1a36b38013283429f2e97f83227f47ebb5547e44a0ca451a7bd44a"
+      "hash": "71f4e12be913ef5b90796e3ee82aff753188eaeb4a2ca685b40c9d76b94d9bd4",
+      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/71/71f4e12be913ef5b90796e3ee82aff753188eaeb4a2ca685b40c9d76b94d9bd4"
     },
     "assets/models.png": {
       "hash": "6ea679c51ed8e41e80bafeb20639273bfe9b13fd491472d00f401a8f56a41d68",
@@ -81,8 +81,8 @@
       "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/52/52ea6c9885b8f5367422c9a36c1fa738be237b7eaef70e82e9aeae261183eedc"
     },
     "compositions/endcard.html": {
-      "hash": "dabc14585bb14e4026fb2aec5fa471f8d6809edbd49d6a993893edf0ad269626",
-      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/da/dabc14585bb14e4026fb2aec5fa471f8d6809edbd49d6a993893edf0ad269626"
+      "hash": "5772529b428a296f9f57de0121fecb1004c9c67415313f57af7ae2f2c30dfdbe",
+      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/57/5772529b428a296f9f57de0121fecb1004c9c67415313f57af7ae2f2c30dfdbe"
     },
     "compositions/images.html": {
       "hash": "9c62a1458b2565c08662a60350d40e3e4dddba15d6db4c9d81af3a7733cb0c12",
@@ -231,6 +231,40 @@
         "compositions/plug.html": {
           "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/30/30246c1926f0e6f5fea4e0cfe1b5c8afd99c19acb3c3955e2ae799c641f7ac82",
           "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/e9/e967df0f7d2def18f578b9e6fb05be4bad918e175d268907968e37ce64b4d5aa"
+        }
+      }
+    },
+    "78ed1c44-3e45-4d28-b410-edde84cb4247": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793461307720,
+      "endedAt": 1793461307721,
+      "files": {
+        "assets/mark-on-dark.svg": {
+          "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/7a/7af58d44edf2ea2622b596420e09eab355c3e45bb5d833517d3545d62fb07ceb",
+          "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/e3/e37af20725431b554b133ccaddecc27ca3ad514289e83e6011e3e3085470d8d8"
+        },
+        "assets/mark.svg": {
+          "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/8a/8a557c5a3e1a36b38013283429f2e97f83227f47ebb5547e44a0ca451a7bd44a",
+          "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/71/71f4e12be913ef5b90796e3ee82aff753188eaeb4a2ca685b40c9d76b94d9bd4"
+        }
+      }
+    },
+    "e2bfff15-571a-4b4b-ae34-885cd4a77dda": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793461369302,
+      "endedAt": 1793461369302,
+      "files": {
+        "compositions/endcard.html": {
+          "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/da/dabc14585bb14e4026fb2aec5fa471f8d6809edbd49d6a993893edf0ad269626",
+          "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/57/5772529b428a296f9f57de0121fecb1004c9c67415313f57af7ae2f2c30dfdbe"
         }
       }
     }
@@ -391,8 +425,8 @@
   },
   "snapshots": {
     "latest": {
-      "revision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63",
-      "id": "f63bf8d1-c7da-4088-bfb6-1d71e554876d-2"
+      "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
+      "id": "8179a03a-c024-43bc-a5ee-e0347696c79f-1"
     },
     "revisions": {
       "a294eb87-63d5-4571-b7b7-939420e7c0aa": [
@@ -611,7 +645,6 @@
         {
           "scope": "full",
           "id": "f63bf8d1-c7da-4088-bfb6-1d71e554876d-0",
-          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/383c160d-285e-43d3-98e1-0a91bd15f832/at-1.7s.png",
           "time": 1.7,
           "metadata": {
             "width": 1920,
@@ -626,12 +659,13 @@
           "revision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63",
           "inputFingerprint": "1be0efbae5ca3b70824b48f144a1d1efc15366ba892cac9ec44d28aa240ff123",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "4271121e-8538-45b8-93ff-265fedd258bd"
         },
         {
           "scope": "full",
           "id": "f63bf8d1-c7da-4088-bfb6-1d71e554876d-1",
-          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/383c160d-285e-43d3-98e1-0a91bd15f832/at-3.4s.png",
           "time": 3.4,
           "metadata": {
             "width": 1920,
@@ -646,12 +680,13 @@
           "revision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63",
           "inputFingerprint": "1be0efbae5ca3b70824b48f144a1d1efc15366ba892cac9ec44d28aa240ff123",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "4271121e-8538-45b8-93ff-265fedd258bd"
         },
         {
           "scope": "full",
           "id": "f63bf8d1-c7da-4088-bfb6-1d71e554876d-2",
-          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/383c160d-285e-43d3-98e1-0a91bd15f832/at-42.15s.png",
           "time": 42.15,
           "metadata": {
             "width": 1920,
@@ -666,6 +701,92 @@
           "revision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63",
           "inputFingerprint": "1be0efbae5ca3b70824b48f144a1d1efc15366ba892cac9ec44d28aa240ff123",
           "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "4271121e-8538-45b8-93ff-265fedd258bd"
+        }
+      ],
+      "78ed1c44-3e45-4d28-b410-edde84cb4247": [
+        {
+          "scope": "full",
+          "id": "cf8c940a-4b7d-4872-b1a3-d3677c1bfe9d-0",
+          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/6c36086a-f3fa-40cf-9e48-904e9b0548b5/at-40s.png",
+          "time": 40,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793461339168,
+          "contentHash": "c82c5934c6f5be6b782ac1f22d39015a2629aff63d1b5145a6b764f9b9fe89b0",
+          "revision": "78ed1c44-3e45-4d28-b410-edde84cb4247",
+          "inputFingerprint": "5b7934680a66b66f9f9ee5e9028f7075c60e230831bc966283af390200a06b8c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "cf8c940a-4b7d-4872-b1a3-d3677c1bfe9d-1",
+          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/6c36086a-f3fa-40cf-9e48-904e9b0548b5/at-42.15s.png",
+          "time": 42.15,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793461339168,
+          "contentHash": "c82c5934c6f5be6b782ac1f22d39015a2629aff63d1b5145a6b764f9b9fe89b0",
+          "revision": "78ed1c44-3e45-4d28-b410-edde84cb4247",
+          "inputFingerprint": "5b7934680a66b66f9f9ee5e9028f7075c60e230831bc966283af390200a06b8c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "e2bfff15-571a-4b4b-ae34-885cd4a77dda": [
+        {
+          "scope": "full",
+          "id": "8179a03a-c024-43bc-a5ee-e0347696c79f-0",
+          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/14f504fb-5232-4968-b963-3cd3f281fbe4/at-40s.png",
+          "time": 40,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793461412383,
+          "contentHash": "37d8ae67d5ea587adcbcd9c13d47991fc3f9aea6645d1fe107d7729d67234960",
+          "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
+          "inputFingerprint": "0c8a9336367f2cf87d0827aecfd142fe4df9b8a7241c3c0e19587274dff46eba",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "8179a03a-c024-43bc-a5ee-e0347696c79f-1",
+          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/14f504fb-5232-4968-b963-3cd3f281fbe4/at-42.15s.png",
+          "time": 42.15,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793461412383,
+          "contentHash": "37d8ae67d5ea587adcbcd9c13d47991fc3f9aea6645d1fe107d7729d67234960",
+          "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
+          "inputFingerprint": "0c8a9336367f2cf87d0827aecfd142fe4df9b8a7241c3c0e19587274dff46eba",
+          "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
       ]
@@ -674,14 +795,15 @@
   },
   "renders": {
     "latest": {
-      "id": "be94f5cb-65a0-41fc-9d8a-e6067c50febc",
-      "completedAt": 1793461107643,
+      "id": "4271121e-8538-45b8-93ff-265fedd258bd",
+      "completedAt": 1793461388192,
       "output": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/renders/usb-llm-studio.mp4",
       "status": "completed",
-      "revision": "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63"
+      "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda"
     },
     "retainedRevisions": [
-      "462ee0b8-9741-4ef6-914d-8fc2fc0a5a63"
+      "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
+      "78ed1c44-3e45-4d28-b410-edde84cb4247"
     ]
   },
   "pendingArtifactCleanup": []
