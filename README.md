@@ -19,6 +19,18 @@
 
 ---
 
+## <a id="video"></a>▶️ Watch the Explainer
+
+<video src="https://github.com/devinwarp/USB_LLMStudio/releases/download/v1.0.0/usb-llm-studio.mp4" controls muted playsinline width="900"></video>
+
+<p>
+  <a href="https://github.com/devinwarp/USB_LLMStudio/releases/download/v1.0.0/usb-llm-studio.mp4">
+    <img src="docs/screenshots/video-thumb.jpg" alt="Watch: what USB LLM Studio is and how to use it" width="900" />
+  </a>
+  <br />
+  <sub>42-second tour: plug in, one-script setup, offline chat · images · speech · voice · model manager. (<a href="https://github.com/devinwarp/USB_LLMStudio/releases/download/v1.0.0/usb-llm-studio.mp4">Open video</a>)</sub>
+</p>
+
 ## <a id="screenshots"></a>📸 Screenshots
 
 <p align="center">
@@ -54,6 +66,7 @@
 
 
 ## 📖 Table of Contents
+* [Watch the Explainer](#video)
 * [Screenshots](#screenshots)
 * [What is USB LLM Studio?](#what-is-usb-llm-studio)
 * [Key Features](#key-features)
@@ -172,6 +185,13 @@ USB_LLMStudio/
 ---
 
 ## <a id="getting-started"></a>🚀 Getting Started
+
+```bash
+git clone https://github.com/devinwarp/USB_LLMStudio.git
+cd USB_LLMStudio
+```
+
+Or download the ZIP from the green **Code** button — or copy the folder onto a USB stick and carry it anywhere.
 
 Ensure you have a modern web browser installed. Follow the quick guide below for your platform:
 
