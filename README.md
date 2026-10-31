@@ -63,6 +63,7 @@
 * [Watch the Explainer](#video)
 * [Screenshots](#screenshots)
 * [What is USB LLM Studio?](#what-is-usb-llm-studio)
+* [Why USB LLM Studio?](#why)
 * [Key Features](#key-features)
 * [Workspace & Engine Architecture](#workspace-architecture)
 * [Supported Models](#supported-models)
@@ -87,6 +88,21 @@ It unifies four major local AI capabilities into one high-performance desktop in
 2. **💬 Text Chat (LLMs):** Converse privately with open-source language models (GGUF format) powered by official, high-performance `llama.cpp` backends.
 3. **🎙️ Speech-to-Text (Whisper):** Transcribe voice recordings and speech to text in real-time with an integrated `whisper.cpp` engine.
 4. **🗣️ Text-to-Speech (Kokoro TTS):** Convert text outputs into highly natural, lifelike vocal audio offline using the `Kokoro-82M` ONNX model.
+
+---
+
+## <a id="why"></a>💡 Why USB LLM Studio?
+
+A full local AI studio — chat, image generation, speech-to-text, and text-to-speech — that fits on a USB stick and runs on any machine with zero installation.
+
+*   **Privacy:** nothing leaves the machine. No API keys, no accounts, no telemetry, no cloud. Sensitive conversations, documents, and images stay local.
+*   **Works offline:** on a plane, in the field, or on air-gapped machines — once models are downloaded, the internet is optional.
+*   **Zero setup for end users:** one launcher script fetches a portable runtime and prebuilt GPU backends by itself. No Python environments, no CUDA toolkits, no dependency setup.
+*   **Portable:** carry models, chats, and settings on a thumb drive between machines. Nothing is installed or left behind on the host.
+*   **One UI instead of five tools:** llama.cpp, stable-diffusion.cpp, whisper.cpp, and Kokoro unified behind a single web interface with a built-in model manager.
+*   **Runs on anything:** automatically uses CUDA, Vulkan, Metal, ROCm, or an Intel NPU when available — and still works on plain CPU when there isn't.
+
+**Who it's for:** privacy-sensitive users (journalists, lawyers, researchers), offline and field scenarios, machines without admin rights for installs, and anyone who wants open models without cloud subscriptions.
 
 ---
 
@@ -225,6 +241,15 @@ Ensure you have a modern web browser installed. Follow the quick guide below for
 ---
 
 ## <a id="hardware-compatibility-acceleration"></a>🖥️ Hardware Compatibility & Acceleration
+
+**Minimum requirements** — a GPU is **not** required; every workload falls back to CPU.
+
+| Requirement | Minimum | Comfortable |
+| :--- | :--- | :--- |
+| OS | 64-bit Windows 10/11 · glibc 2.38+ Linux (Ubuntu 24.04+) · macOS Apple Silicon (M1+; Intel Macs unsupported) | Same |
+| RAM | 8 GB (SD 1.5 images, small 3–8B LLMs) | 16 GB; 24 GB+ for SDXL / larger LLMs |
+| Disk | A few GB for the app; model weights add 2–8 GB each | — |
+| GPU | None needed — chat, Whisper and TTS run fine on CPU; image generation works but is slow (minutes vs seconds) | Any NVIDIA (CUDA), AMD (Vulkan/ROCm), Intel Arc (Vulkan), Apple Silicon (Metal), or Intel Core Ultra NPU |
 
 ### Windows
 
