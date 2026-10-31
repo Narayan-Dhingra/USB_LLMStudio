@@ -3,7 +3,7 @@
     #root {
       position: absolute;
       inset: 0;
-      background: radial-gradient(1200px 700px at 50% 42%, #101014 0%, #0a0a0b 64%);
+      background: linear-gradient(180deg, #f6f6f8 0%, #ececf0 100%);
       font-family: Inter, sans-serif;
     }
     #end-mark {
@@ -21,7 +21,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 470px;
+      top: 500px;
       text-align: center;
       z-index: 2;
     }
@@ -29,12 +29,12 @@
       font-size: 92px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: #f5f5f7;
+      color: #1c1c1e;
     }
     #end-bar {
       position: absolute;
       left: 810px;
-      top: 610px;
+      top: 640px;
       z-index: 2;
     }
     #end-bar .bar-inner {
@@ -48,20 +48,20 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 660px;
+      top: 690px;
       text-align: center;
       z-index: 2;
     }
     #end-sub .sub-inner {
       font-size: 42px;
       font-weight: 500;
-      color: #b9b9c0;
+      color: #55555c;
     }
     #end-micro {
       position: absolute;
       left: 0;
       right: 0;
-      top: 760px;
+      top: 790px;
       text-align: center;
       z-index: 2;
     }
@@ -69,7 +69,7 @@
       font-family: "JetBrains Mono", monospace;
       font-size: 30px;
       letter-spacing: 0.18em;
-      color: #a3a3ab;
+      color: #7a7a82;
     }
   </style>
 
@@ -93,7 +93,6 @@
 
   <script>
     const tl = gsap.timeline({ paused: true });
-    // The LED tile from scene 1 resolves back into the full mark
     tl.fromTo(
       "#end-mark img",
       { opacity: 0, scale: 0.55 },

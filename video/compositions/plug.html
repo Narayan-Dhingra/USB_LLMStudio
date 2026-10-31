@@ -3,35 +3,55 @@
     #root {
       position: absolute;
       inset: 0;
-      background: radial-gradient(1400px 800px at 62% 56%, #101014 0%, #0a0a0b 62%);
+      background: linear-gradient(180deg, #f6f6f8 0%, #ececf0 100%);
       font-family: Inter, sans-serif;
     }
-    #plug-port {
+    /* Laptop side edge: aluminum slab + rising screen bezel, USB-A slot on its face */
+    #plug-laptop {
       position: absolute;
       left: 1180px;
-      top: 445px;
+      top: 167px;
       z-index: 3;
     }
-    #plug-port .port-inner {
-      width: 190px;
-      height: 120px;
-      border: 3px solid #3a3a40;
-      border-radius: 16px;
-      background: #0c0c0f;
-      box-shadow: inset 0 0 24px #000;
+    #plug-laptop .screen {
+      width: 26px;
+      height: 320px;
+      margin-left: 340px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(90deg, #b9b9c0 0%, #d9d9de 60%, #c4c4cb 100%);
+      box-shadow: inset -2px 0 0 #a8a8b0;
     }
-    #plug-port .port-label {
-      margin-top: 14px;
-      text-align: center;
+    #plug-laptop .base {
+      position: relative;
+      width: 430px;
+      height: 64px;
+      border-radius: 0 14px 22px 0;
+      background: linear-gradient(180deg, #d9d9de 0%, #c4c4cb 70%, #b0b0b8 100%);
+      box-shadow: 0 18px 40px rgba(20, 20, 30, 0.18);
+    }
+    #plug-laptop .port {
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 14px;
+      height: 34px;
+      border-radius: 0 4px 4px 0;
+      background: #141418;
+    }
+    #plug-laptop .port-label {
+      position: absolute;
+      left: 30px;
+      top: 19px;
       font-family: "JetBrains Mono", monospace;
       font-size: 20px;
-      letter-spacing: 0.32em;
-      color: #7a7a82;
+      letter-spacing: 0.22em;
+      color: #6e6e74;
     }
+    /* The drive: silver tongue + dark body, LED + etched mark */
     #plug-drive {
       position: absolute;
-      left: 852px;
-      top: 452px;
+      left: 840px;
+      top: 472px;
       z-index: 2;
     }
     #plug-drive .drive-inner {
@@ -40,75 +60,101 @@
       align-items: center;
     }
     #plug-drive .connector {
-      width: 78px;
-      height: 88px;
-      margin-right: -4px;
-      border-radius: 6px 10px 10px 6px;
-      background: linear-gradient(180deg, #d8d8de 0%, #9d9da6 55%, #c7c7ce 100%);
+      width: 76px;
+      height: 34px;
+      margin-left: -2px;
+      border-radius: 4px 8px 8px 4px;
+      background: linear-gradient(180deg, #e4e4e9 0%, #a9a9b2 55%, #cfcfd6 100%);
       position: relative;
+      box-shadow: 0 2px 6px rgba(20, 20, 30, 0.25);
     }
     #plug-drive .connector::after {
       content: "";
       position: absolute;
-      left: 14px;
-      top: 16px;
-      width: 50px;
-      height: 56px;
-      border-radius: 4px;
+      left: 12px;
+      top: 9px;
+      width: 52px;
+      height: 16px;
+      border-radius: 3px;
       background: #1a1a1e;
     }
     #plug-drive .body {
       width: 280px;
-      height: 108px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #1f1f24 0%, #151518 100%);
-      border: 1px solid #33333a;
+      height: 96px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #2b2b31 0%, #1b1b1f 100%);
+      border: 1px solid #3a3a42;
       position: relative;
+      box-shadow: 0 16px 40px rgba(20, 20, 30, 0.3);
     }
     #plug-drive .led {
       position: absolute;
       left: 26px;
-      top: 34px;
+      top: 28px;
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: #2a2a30;
+      background: #2e2e35;
       opacity: 0;
     }
     #plug-drive .brand-etch {
       position: absolute;
       right: 20px;
-      top: 28px;
+      top: 22px;
       width: 52px;
       height: 52px;
-      opacity: 0.5;
+      opacity: 0.55;
     }
     #plug-drive .label {
       position: absolute;
       right: 82px;
-      top: 42px;
+      top: 38px;
       font-family: "JetBrains Mono", monospace;
       font-size: 17px;
       letter-spacing: 0.14em;
-      color: #6a6a72;
+      color: #7c7c85;
     }
     .plug-line {
       position: absolute;
-      left: 560px;
+      left: 520px;
       font-size: 66px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: #f5f5f7;
+      color: #1c1c1e;
     }
     #plug-line-1 { top: 660px; z-index: 4; }
     #plug-line-2 { top: 746px; z-index: 4; }
-    #plug-line-3 { top: 832px; z-index: 4; color: #8e8e93; }
+    #plug-line-3 { top: 832px; z-index: 4; color: #6e6e74; }
+    /* Offline cue chip */
+    #plug-offline {
+      position: absolute;
+      left: 520px;
+      top: 600px;
+      z-index: 4;
+    }
+    #plug-offline .off-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e2e2e8;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1c1c1e;
+      box-shadow: 0 10px 30px rgba(20, 20, 30, 0.1);
+    }
+    #plug-offline svg { color: #ff6a3d; flex: 0 0 auto; }
   </style>
 
   <div id="root" data-composition-id="plug" data-width="1920" data-height="1080">
-    <div id="plug-port" class="clip" data-start="0" data-duration="5.5">
-      <div class="port-inner"></div>
-      <div class="port-label" data-layout-ignore>USB</div>
+    <div id="plug-laptop" class="clip" data-start="0" data-duration="5.5">
+      <div class="screen"></div>
+      <div class="base">
+        <div class="port"></div>
+        <div class="port-label" data-layout-ignore>USB-A</div>
+      </div>
     </div>
 
     <div id="plug-drive" class="clip" data-start="0" data-duration="4.7">
@@ -119,6 +165,18 @@
           <img class="brand-etch" src="assets/mark.svg" alt="" />
           <div class="label" data-layout-ignore>STUDIO</div>
         </div>
+      </div>
+    </div>
+
+    <div id="plug-offline" class="clip" data-start="2.7" data-duration="2.8">
+      <div class="off-inner">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+          <circle cx="12" cy="19.6" r="0.6" fill="currentColor" />
+          <line x1="2.5" y1="2.5" x2="21.5" y2="21.5" />
+        </svg>
+        no internet needed
       </div>
     </div>
 
@@ -135,29 +193,34 @@
 
   <script>
     const tl = gsap.timeline({ paused: true });
-    // Drive slides in and seats into the port (resting state keeps its tip
-    // on screen at frame 0 so the thumbnail is never just the background)
+    // Drive slides right and seats into the laptop's USB-A slot
     tl.fromTo(
       "#plug-drive .drive-inner",
       { x: -430 },
       { x: 0, duration: 1.05, ease: "power3.out" },
       0.35,
     );
-    // Port takes a small bump on contact
+    // Laptop base takes a small bump on contact
     tl.fromTo(
-      "#plug-port .port-inner",
+      "#plug-laptop .base",
       { scale: 1 },
-      { scale: 1.06, duration: 0.1, ease: "power2.out", yoyo: true, repeat: 1 },
+      { scale: 1.03, duration: 0.1, ease: "power2.out", yoyo: true, repeat: 1 },
       1.38,
     );
-    // LED lights — the brand orange is born here
+    // LED lights — the brand accent wakes on the stick
     tl.fromTo(
       "#plug-drive .led",
       { opacity: 0, boxShadow: "0 0 0px rgba(255,106,61,0)" },
-      { opacity: 1, backgroundColor: "#ff6a3d", boxShadow: "0 0 34px rgba(255,106,61,0.55)", duration: 0.28, ease: "power2.out" },
+      { opacity: 1, backgroundColor: "#ff6a3d", boxShadow: "0 0 34px rgba(255,106,61,0.65)", duration: 0.28, ease: "power2.out" },
       1.5,
     );
-    // Title lines land on the voice's beats
+    // Offline cue pops with the titles
+    tl.fromTo(
+      "#plug-offline .off-inner",
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" },
+      2.7,
+    );
     for (const [id, at] of [["#plug-line-1 span", 2.0], ["#plug-line-2 span", 2.6], ["#plug-line-3 span", 3.2]]) {
       tl.fromTo(id, { opacity: 0, filter: "blur(10px)", y: 14 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.35, ease: "power4.out" }, at);
     }

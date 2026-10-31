@@ -3,7 +3,7 @@
     #root {
       position: absolute;
       inset: 0;
-      background: #0a0a0b;
+      background: linear-gradient(180deg, #f6f6f8 0%, #ececf0 100%);
       font-family: Inter, sans-serif;
     }
     #images-card {
@@ -16,10 +16,10 @@
       width: 1600px;
       height: 900px;
       border-radius: 18px;
-      border: 1px solid #2a2a2e;
-      background: #111114;
+      border: 1px solid #e2e2e8;
+      background: #ffffff;
       overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 40px 100px rgba(20, 20, 30, 0.16);
     }
     #images-card .card-bar {
       height: 40px;
@@ -27,10 +27,21 @@
       align-items: center;
       gap: 8px;
       padding: 0 16px;
-      background: #141417;
-      border-bottom: 1px solid #1d1d21;
+      background: #fafafb;
+      border-bottom: 1px solid #e9e9ee;
     }
-    #images-card .card-bar i { width: 11px; height: 11px; border-radius: 50%; background: #2f2f35; display: block; }
+    #images-card .card-bar i { width: 11px; height: 11px; border-radius: 50%; background: #dcdce2; display: block; }
+    #images-card .card-bar .off {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      color: #6e6e74;
+    }
+    #images-card .card-bar .off svg { color: #ff6a3d; }
     #images-card img {
       width: 100%;
       height: 860px;
@@ -49,12 +60,12 @@
       gap: 12px;
       padding: 14px 24px;
       border-radius: 999px;
-      background: #16161a;
-      border: 1px solid #33333a;
+      background: #ffffff;
+      border: 1px solid #e2e2e8;
       font-size: 30px;
       font-weight: 600;
-      color: #f5f5f7;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      color: #1c1c1e;
+      box-shadow: 0 16px 40px rgba(20, 20, 30, 0.14);
     }
     #images-callout .callout-dot {
       width: 14px;
@@ -65,24 +76,27 @@
     #images-sub {
       position: absolute;
       right: 310px;
-      top: 220px;
+      top: 228px;
       z-index: 3;
     }
     #images-sub .sub-inner {
       font-family: "JetBrains Mono", monospace;
       font-size: 28px;
-      color: #9a9aa2;
+      color: #6e6e74;
       padding: 8px 16px;
       border-radius: 10px;
-      background: #121215;
-      border: 1px solid #26262b;
+      background: #ffffff;
+      border: 1px solid #e2e2e8;
+      box-shadow: 0 8px 22px rgba(20, 20, 30, 0.08);
     }
   </style>
 
   <div id="root" data-composition-id="images" data-width="1920" data-height="1080">
     <div id="images-card" class="clip" data-start="0.15" data-duration="5.85" data-hold>
       <div class="card-inner">
-        <div class="card-bar"><i></i><i></i><i></i></div>
+        <div class="card-bar"><i></i><i></i><i></i>
+          <span class="off" data-layout-ignore><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="19.6" r="0.6" fill="currentColor"/><line x1="2.5" y1="2.5" x2="21.5" y2="21.5"/></svg>offline</span>
+        </div>
         <img src="assets/images.png" alt="USB LLM Studio image generation" />
       </div>
     </div>
