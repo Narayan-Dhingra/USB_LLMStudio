@@ -11,12 +11,6 @@
   <strong>A premium, zero-configuration local AI studio and offline GUI for Stable Diffusion (Image Generation), LLMs (Chat), Whisper (Speech-to-Text), and Kokoro (Text-to-Speech). Powered by hardware-accelerated GPU and NPU execution on Windows, Linux, and macOS.</strong>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Offline-100%25-green?style=for-the-badge&logo=offline" alt="100% Offline" />
-  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-blue?style=for-the-badge" alt="Platforms" />
-  <img src="https://img.shields.io/badge/License-MIT-orange?style=for-the-badge" alt="License" />
-</p>
-
 ---
 
 ## <a id="video"></a>▶️ Watch the Explainer
@@ -374,4 +368,10 @@ Then restart the app with `./linux.sh` (Linux) or `./mac.sh` (macOS).
 
 ## <a id="licensing"></a>📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file. Bundles [stable-diffusion.cpp](https://github.com/leejet/stable-diffusion.cpp) (MIT License). Model weights are subject to their respective creators' licenses.
+**USB LLM Studio is free for personal and non-commercial use only.**
+
+It is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE) — you may use, modify, and share it for any non-commercial purpose, but you may **not** reproduce, distribute, or use it for commercial purposes without a separate paid license.
+
+**Commercial use requires a paid license.** To license USB LLM Studio for commercial use, contact the copyright holder via [github.com/shameerthaha](https://github.com/shameerthaha).
+
+Model weights and third-party backend binaries downloaded at runtime remain subject to their respective creators' licenses and are not covered by this license.

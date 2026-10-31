@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "b7111fee-e9d7-4a69-90ea-575b1b3bb361",
-  "currentRevision": "d090dd95-59f6-4893-a22d-4c7c0b5f452a",
+  "currentRevision": "a0bdc508-8053-4c52-9692-015e63fd0b54",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -81,8 +81,8 @@
       "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/22/229956fdbd71ca00dda95a5d078a3bdf0d6d721e9f5995c93f688f55b89ab6a1"
     },
     "compositions/endcard.html": {
-      "hash": "fec01b0887f184645a6c06937e838f041727254db53cff6f93188c575d7d1635",
-      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/fe/fec01b0887f184645a6c06937e838f041727254db53cff6f93188c575d7d1635"
+      "hash": "c3dbd47fdcf24b2fff561f11414e365d4cd714ea015a71b63dd5d6fec9b0e5cf",
+      "content": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/c3/c3dbd47fdcf24b2fff561f11414e365d4cd714ea015a71b63dd5d6fec9b0e5cf"
     },
     "compositions/images.html": {
       "hash": "ddaac3d771d5a1f2878788abd08d3cc6b03ee371f3ffe8b7a7b1a82931293d47",
@@ -401,6 +401,21 @@
         "compositions/plug.html": {
           "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/4f/4fdd722a555d4f8cdb49d6f52bf9d0eb6904de7b571544f6794983ae85728805",
           "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/d7/d78071a01846c361f628b29c02b59c63abb560c1bb953f98d0cd448faf3e4f1a"
+        }
+      }
+    },
+    "a0bdc508-8053-4c52-9692-015e63fd0b54": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793467068948,
+      "endedAt": 1793467068949,
+      "files": {
+        "compositions/endcard.html": {
+          "before": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/fe/fec01b0887f184645a6c06937e838f041727254db53cff6f93188c575d7d1635",
+          "after": "/Users/shameerthaha/.cache/hyperframes/history/b7111fee-e9d7-4a69-90ea-575b1b3bb361/blobs/c3/c3dbd47fdcf24b2fff561f11414e365d4cd714ea015a71b63dd5d6fec9b0e5cf"
         }
       }
     }
@@ -1008,7 +1023,6 @@
         {
           "scope": "full",
           "id": "8179a03a-c024-43bc-a5ee-e0347696c79f-0",
-          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/14f504fb-5232-4968-b963-3cd3f281fbe4/at-40s.png",
           "time": 40,
           "metadata": {
             "width": 1920,
@@ -1023,12 +1037,13 @@
           "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
           "inputFingerprint": "0c8a9336367f2cf87d0827aecfd142fe4df9b8a7241c3c0e19587274dff46eba",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "42ac37b9-f216-4dba-8fd0-29c75dd46281"
         },
         {
           "scope": "full",
           "id": "8179a03a-c024-43bc-a5ee-e0347696c79f-1",
-          "image": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/.hyperframes/artifacts/snapshots/14f504fb-5232-4968-b963-3cd3f281fbe4/at-42.15s.png",
           "time": 42.15,
           "metadata": {
             "width": 1920,
@@ -1043,7 +1058,9 @@
           "revision": "e2bfff15-571a-4b4b-ae34-885cd4a77dda",
           "inputFingerprint": "0c8a9336367f2cf87d0827aecfd142fe4df9b8a7241c3c0e19587274dff46eba",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "42ac37b9-f216-4dba-8fd0-29c75dd46281"
         }
       ],
       "5d8bfdcb-68f9-47e8-b5d6-b48b6404a6c1": [
@@ -1262,15 +1279,15 @@
   },
   "renders": {
     "latest": {
-      "id": "47591e2f-c8ca-4dbe-859c-474f0e6fe865",
-      "completedAt": 1793466055667,
+      "id": "42ac37b9-f216-4dba-8fd0-29c75dd46281",
+      "completedAt": 1793467086741,
       "output": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/renders/usb-llm-studio.mp4",
       "status": "completed",
-      "revision": "d090dd95-59f6-4893-a22d-4c7c0b5f452a"
+      "revision": "a0bdc508-8053-4c52-9692-015e63fd0b54"
     },
     "retainedRevisions": [
-      "d090dd95-59f6-4893-a22d-4c7c0b5f452a",
-      "e2bfff15-571a-4b4b-ae34-885cd4a77dda"
+      "a0bdc508-8053-4c52-9692-015e63fd0b54",
+      "d090dd95-59f6-4893-a22d-4c7c0b5f452a"
     ]
   },
   "pendingArtifactCleanup": []
