@@ -1,0 +1,11 @@
+{
+  "name": "usb-llmstudio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "USB LLM Studio - portable, fully offline local AI studio (chat, images, speech-to-text, text-to-speech)",
+  "scripts": {
+    "start": "node scripts/server/serve.cjs",
+    "build": "npm --prefix app/frontend run build",
+    "test": "node --test scripts/tests/"
+  }
+}
