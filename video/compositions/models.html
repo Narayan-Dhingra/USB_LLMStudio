@@ -1,0 +1,126 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #0a0a0b;
+      font-family: Inter, sans-serif;
+    }
+    #models-card {
+      position: absolute;
+      left: 160px;
+      top: 90px;
+      z-index: 2;
+    }
+    #models-card .card-inner {
+      width: 1600px;
+      height: 900px;
+      border-radius: 18px;
+      border: 1px solid #2a2a2e;
+      background: #111114;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+    }
+    #models-card .card-bar {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      background: #141417;
+      border-bottom: 1px solid #1d1d21;
+    }
+    #models-card .card-bar i { width: 11px; height: 11px; border-radius: 50%; background: #2f2f35; display: block; }
+    #models-card img {
+      width: 100%;
+      height: 860px;
+      object-fit: cover;
+      display: block;
+    }
+    #models-callout {
+      position: absolute;
+      left: 300px;
+      top: 150px;
+      z-index: 3;
+    }
+    #models-callout .callout-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: #16161a;
+      border: 1px solid #33333a;
+      font-size: 30px;
+      font-weight: 600;
+      color: #f5f5f7;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+    #models-callout .callout-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff6a3d;
+    }
+    #models-badge {
+      position: absolute;
+      left: 1005px;
+      top: 505px;
+      z-index: 4;
+    }
+    #models-badge .badge-inner {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #ff6a3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a0a0b;
+      font-size: 30px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(255, 106, 61, 0.45);
+    }
+  </style>
+
+  <div id="root" data-composition-id="models" data-width="1920" data-height="1080">
+    <div id="models-card" class="clip" data-start="0.15" data-duration="5.65">
+      <div class="card-inner">
+        <div class="card-bar"><i></i><i></i><i></i></div>
+        <img src="assets/models.png" alt="USB LLM Studio model manager" />
+      </div>
+    </div>
+
+    <div id="models-callout" class="clip" data-start="1.5" data-duration="4.3">
+      <div class="callout-inner"><span class="callout-dot"></span>one click from Hugging Face</div>
+    </div>
+
+    <div id="models-badge" class="clip" data-start="3.1" data-duration="1.6">
+      <div class="badge-inner">↓</div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(
+      "#models-card .card-inner",
+      { opacity: 0, scale: 0.94 },
+      { opacity: 1, scale: 1, duration: 0.55, ease: "power3.out" },
+      0.15,
+    );
+    tl.fromTo(
+      "#models-callout .callout-inner",
+      { opacity: 0, x: -22 },
+      { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" },
+      1.5,
+    );
+    // Download badge pops onto a model card's download icon
+    tl.fromTo(
+      "#models-badge .badge-inner",
+      { opacity: 0, scale: 0.3 },
+      { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2.4)" },
+      3.1,
+    );
+    window.__timelines["models"] = tl;
+  </script>
+</template>

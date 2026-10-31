@@ -17,16 +17,6 @@
   <img src="https://img.shields.io/badge/License-MIT-orange?style=for-the-badge" alt="License" />
 </p>
 
-<p align="center">
-  🎥 <strong>Watch the Setup & Demo Video:</strong> <a href="https://youtu.be/yeFvP3SWMak">https://youtu.be/yeFvP3SWMak</a>
-</p>
-
-<p align="center">
-  <a href="https://youtu.be/yeFvP3SWMak">
-    <img src="https://img.youtube.com/vi/yeFvP3SWMak/maxresdefault.jpg" alt="USB LLM Studio Video Tutorial" width="800" style="border-radius: 8px;" />
-  </a>
-</p>
-
 ---
 
 ## <a id="screenshots"></a>📸 Screenshots

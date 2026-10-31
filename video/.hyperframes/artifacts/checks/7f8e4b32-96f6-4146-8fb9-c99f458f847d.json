@@ -1,0 +1,559 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "gsap_repeated_fromto_without_baseline",
+        "severity": "warning",
+        "message": "3 tl.fromTo() calls target \"#chat-cursor .cursor-dot\" with no stable baseline. The last-authored fromTo \"from\" values become the element's resting state for any seek before the first tween actually runs, because GSAP applies fromTo from-values at authoring time (immediateRender), not at tween position.",
+        "selector": "#chat-cursor .cursor-dot",
+        "dataAttributes": {},
+        "sourceFile": "/Users/shameerthaha/GitHub/hackathons/USB_LLMStudio/video/compositions/chat.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add `immediateRender: false` to every fromTo except the earliest-positioned one (at 3.2s), so pre-first-tween seeks keep its \"from\" values. A hiding `tl.set(..., 0)` baseline trips gsap_timeline_set_initial_hide, and a `gsap.set` authored before the fromTo calls is overwritten by them."
+      }
+    ],
+    "filesScanned": 8
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"vo-1\" is 3.53s but its slot (data-duration) is 3.60s — the slot is shortened to the media length when rendered. Set data-duration to ~3.53s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "42.4",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"vo-7\" is 4.73s but its slot (data-duration) is 4.80s — the slot is shortened to the media length when rendered. Set data-duration to ~4.73s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "42.4",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 42.4,
+    "samples": [
+      2.356,
+      7.067,
+      11.778,
+      16.489,
+      21.2,
+      25.911,
+      30.622,
+      35.333,
+      40.044
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.59:1; WCAG AA requires 4.5:1.",
+        "text": "USB",
+        "fg": "rgb(85,85,92)",
+        "bg": "rgb(15,15,19)",
+        "ratio": 2.59,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(123,123,128)",
+        "large": false,
+        "selector": "div > div:nth-of-type(1) > div > div:nth-of-type(1) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/plug.html",
+        "bbox": {
+          "x": 1180,
+          "y": 579,
+          "width": 190,
+          "height": 26
+        },
+        "time": 2.356,
+        "times": [
+          2.356
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 3.23:1; WCAG AA requires 4.5:1.",
+        "text": "STUDIO",
+        "fg": "rgb(106,106,114)",
+        "bg": "rgb(26,26,31)",
+        "ratio": 3.23,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(130,130,137)",
+        "large": false,
+        "selector": "div > div:nth-of-type(1) > div > div:nth-of-type(2) > div > div:nth-of-type(2) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/plug.html",
+        "bbox": {
+          "x": 815.515625,
+          "y": 493,
+          "width": 75.484375,
+          "height": 22
+        },
+        "time": 2.356,
+        "times": [
+          2.356
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.85:1; WCAG AA requires 4.5:1.",
+        "text": "usb-llmstudio — first run",
+        "fg": "rgb(92,92,100)",
+        "bg": "rgb(17,17,20)",
+        "ratio": 2.85,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(124,124,130)",
+        "large": false,
+        "selector": "div > div:nth-of-type(2) > div > div:nth-of-type(2) > div > div:nth-of-type(1) > span:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/setup.html",
+        "bbox": {
+          "x": 469,
+          "y": 284,
+          "width": 285,
+          "height": 25
+        },
+        "time": 11.778,
+        "times": [
+          11.778
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      2.356,
+      11.778,
+      21.2,
+      30.622,
+      40.044
+    ],
+    "checked": 21,
+    "passed": 18
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 9,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"STUDIO\" at 17 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "STUDIO",
+        "selector": "div.label",
+        "dataAttributes": {},
+        "sourceFile": "compositions/plug.html",
+        "bbox": {
+          "x": 55.52,
+          "y": 493,
+          "width": 75.48,
+          "height": 22
+        },
+        "time": 0,
+        "times": [
+          0,
+          0
+        ],
+        "fontPx": 17,
+        "floorPx": 28,
+        "seconds": 4.739,
+        "elements": [
+          {
+            "selector": "div.label",
+            "text": "STUDIO",
+            "fontPx": 17,
+            "time": 0,
+            "seconds": 4.739
+          },
+          {
+            "selector": "div.port-label",
+            "text": "USB",
+            "fontPx": 20,
+            "time": 0,
+            "seconds": 5.612
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 6 text elements stay under it for 0.5 s or more, the smallest \"usb-llmstudio — first run\" at 19 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "usb-llmstudio — first run",
+        "selector": "span.term-title",
+        "dataAttributes": {},
+        "sourceFile": "compositions/setup.html",
+        "bbox": {
+          "x": 469,
+          "y": 295.46,
+          "width": 285,
+          "height": 25
+        },
+        "time": 5.736,
+        "times": [
+          5.612,
+          5.612,
+          5.612,
+          5.736,
+          10.6,
+          10.6
+        ],
+        "fontPx": 19,
+        "floorPx": 28,
+        "seconds": 6.361,
+        "elements": [
+          {
+            "selector": "span.term-title",
+            "text": "usb-llmstudio — first run",
+            "fontPx": 19,
+            "time": 5.736,
+            "seconds": 6.361
+          },
+          {
+            "selector": "div.chips-row > span:nth-of-type(1)",
+            "text": "macOS · ./mac.sh",
+            "fontPx": 21,
+            "time": 5.612,
+            "seconds": 6.485
+          },
+          {
+            "selector": "div.chips-row > span:nth-of-type(2)",
+            "text": "Linux · ./linux.sh",
+            "fontPx": 21,
+            "time": 5.612,
+            "seconds": 6.485
+          },
+          {
+            "selector": "div.chips-row > span:nth-of-type(3)",
+            "text": "Windows · windows.bat",
+            "fontPx": 21,
+            "time": 5.612,
+            "seconds": 6.485
+          },
+          {
+            "selector": "#setup-done",
+            "text": "opening …",
+            "fontPx": 26,
+            "time": 10.6,
+            "seconds": 1.497
+          },
+          {
+            "selector": "#setup-done > b:nth-of-type(1)",
+            "text": "http://localhost:1420",
+            "fontPx": 26,
+            "time": 10.6,
+            "seconds": 1.497
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"local GGUF models\" renders at 27 px for 4.12 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "local GGUF models",
+        "selector": "#chat-callout > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/chat.html",
+        "bbox": {
+          "x": 348.9,
+          "y": 165,
+          "width": 247.33,
+          "height": 33
+        },
+        "time": 13.842,
+        "times": [
+          13.842
+        ],
+        "fontPx": 27,
+        "floorPx": 28,
+        "seconds": 4.116,
+        "elements": [
+          {
+            "selector": "#chat-callout > div:nth-of-type(1)",
+            "text": "local GGUF models",
+            "fontPx": 27,
+            "time": 13.842,
+            "seconds": 4.116
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"safetensors · ckpt · gguf\" at 21 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "safetensors · ckpt · gguf",
+        "selector": "#images-sub > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/images.html",
+        "bbox": {
+          "x": 1278,
+          "y": 229.39,
+          "width": 315,
+          "height": 27
+        },
+        "time": 20.078,
+        "times": [
+          19.579,
+          20.078
+        ],
+        "fontPx": 21,
+        "floorPx": 28,
+        "seconds": 3.866,
+        "elements": [
+          {
+            "selector": "#images-sub > div:nth-of-type(1)",
+            "text": "safetensors · ckpt · gguf",
+            "fontPx": 21,
+            "time": 20.078,
+            "seconds": 3.866
+          },
+          {
+            "selector": "#images-callout > div:nth-of-type(1)",
+            "text": "Stable Diffusion · your GPU",
+            "fontPx": 27,
+            "time": 19.579,
+            "seconds": 4.365
+          }
+        ]
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.62 s (20.20–23.82 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 20.202,
+        "seconds": 3.617,
+        "floorSeconds": 3,
+        "until": 23.819
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 3 text elements stay under it for 0.5 s or more, the smallest \"transcribe — whisper.cpp\" at 22 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "transcribe — whisper.cpp",
+        "selector": "#voice-left > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/voice.html",
+        "bbox": {
+          "x": 104,
+          "y": 132,
+          "width": 348.48,
+          "height": 29
+        },
+        "time": 24.068,
+        "times": [
+          24.068,
+          24.318,
+          25.565
+        ],
+        "fontPx": 22,
+        "floorPx": 28,
+        "seconds": 5.862,
+        "elements": [
+          {
+            "selector": "#voice-left > div:nth-of-type(1)",
+            "text": "transcribe — whisper.cpp",
+            "fontPx": 22,
+            "time": 24.068,
+            "seconds": 5.862
+          },
+          {
+            "selector": "#voice-right > div:nth-of-type(1)",
+            "text": "voice — kokoro tts",
+            "fontPx": 22,
+            "time": 24.318,
+            "seconds": 5.612
+          },
+          {
+            "selector": "div.chip-inner",
+            "text": "speech in · voice out",
+            "fontPx": 26,
+            "time": 25.565,
+            "seconds": 4.365
+          }
+        ]
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 3.99 s (25.81–29.80 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 25.814,
+        "seconds": 3.991,
+        "floorSeconds": 3,
+        "until": 29.805
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"one click from Hugging Face\" renders at 27 px for 4.24 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "one click from Hugging Face",
+        "selector": "#models-callout > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "compositions/models.html",
+        "bbox": {
+          "x": 348.9,
+          "y": 165,
+          "width": 371.94,
+          "height": 33
+        },
+        "time": 31.551,
+        "times": [
+          31.551
+        ],
+        "fontPx": 27,
+        "floorPx": 28,
+        "seconds": 4.24,
+        "elements": [
+          {
+            "selector": "#models-callout > div:nth-of-type(1)",
+            "text": "one click from Hugging Face",
+            "fontPx": 27,
+            "time": 31.551,
+            "seconds": 4.24
+          }
+        ]
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and \"MIT · OFFLINE · PORTABLE\" renders at 24 px for 3.74 s: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "MIT · OFFLINE · PORTABLE",
+        "selector": "div.micro-inner",
+        "dataAttributes": {},
+        "sourceFile": "compositions/endcard.html",
+        "bbox": {
+          "x": 735.36,
+          "y": 760,
+          "width": 449.28,
+          "height": 31
+        },
+        "time": 38.659,
+        "times": [
+          38.659
+        ],
+        "fontPx": 24,
+        "floorPx": 28,
+        "seconds": 3.741,
+        "elements": [
+          {
+            "selector": "div.micro-inner",
+            "text": "MIT · OFFLINE · PORTABLE",
+            "fontPx": 24,
+            "time": 38.659,
+            "seconds": 3.741
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 340
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

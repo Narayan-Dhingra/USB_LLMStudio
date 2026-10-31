@@ -1,0 +1,166 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(1400px 800px at 62% 56%, #101014 0%, #0a0a0b 62%);
+      font-family: Inter, sans-serif;
+    }
+    #plug-port {
+      position: absolute;
+      left: 1180px;
+      top: 445px;
+      z-index: 3;
+    }
+    #plug-port .port-inner {
+      width: 190px;
+      height: 120px;
+      border: 3px solid #3a3a40;
+      border-radius: 16px;
+      background: #0c0c0f;
+      box-shadow: inset 0 0 24px #000;
+    }
+    #plug-port .port-label {
+      margin-top: 14px;
+      text-align: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 20px;
+      letter-spacing: 0.32em;
+      color: #7a7a82;
+    }
+    #plug-drive {
+      position: absolute;
+      left: 852px;
+      top: 452px;
+      z-index: 2;
+    }
+    #plug-drive .drive-inner {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+    #plug-drive .connector {
+      width: 78px;
+      height: 88px;
+      margin-right: -4px;
+      border-radius: 6px 10px 10px 6px;
+      background: linear-gradient(180deg, #d8d8de 0%, #9d9da6 55%, #c7c7ce 100%);
+      position: relative;
+    }
+    #plug-drive .connector::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      width: 50px;
+      height: 56px;
+      border-radius: 4px;
+      background: #1a1a1e;
+    }
+    #plug-drive .body {
+      width: 280px;
+      height: 108px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #1f1f24 0%, #151518 100%);
+      border: 1px solid #33333a;
+      position: relative;
+    }
+    #plug-drive .led {
+      position: absolute;
+      left: 26px;
+      top: 34px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #2a2a30;
+      opacity: 0;
+    }
+    #plug-drive .brand-etch {
+      position: absolute;
+      right: 20px;
+      top: 28px;
+      width: 52px;
+      height: 52px;
+      opacity: 0.5;
+    }
+    #plug-drive .label {
+      position: absolute;
+      right: 82px;
+      top: 42px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 17px;
+      letter-spacing: 0.14em;
+      color: #6a6a72;
+    }
+    .plug-line {
+      position: absolute;
+      left: 560px;
+      font-size: 66px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #f5f5f7;
+    }
+    #plug-line-1 { top: 660px; z-index: 4; }
+    #plug-line-2 { top: 746px; z-index: 4; }
+    #plug-line-3 { top: 832px; z-index: 4; color: #8e8e93; }
+  </style>
+
+  <div id="root" data-composition-id="plug" data-width="1920" data-height="1080">
+    <div id="plug-port" class="clip" data-start="0" data-duration="5.5">
+      <div class="port-inner"></div>
+      <div class="port-label" data-layout-ignore>USB</div>
+    </div>
+
+    <div id="plug-drive" class="clip" data-start="0" data-duration="4.7">
+      <div class="drive-inner">
+        <div class="connector"></div>
+        <div class="body">
+          <div class="led"></div>
+          <img class="brand-etch" src="assets/mark.svg" alt="" />
+          <div class="label" data-layout-ignore>STUDIO</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="plug-line-1" class="clip plug-line" data-start="2.0" data-duration="3.5">
+      <span>No install.</span>
+    </div>
+    <div id="plug-line-2" class="clip plug-line" data-start="2.6" data-duration="2.9">
+      <span>No account.</span>
+    </div>
+    <div id="plug-line-3" class="clip plug-line" data-start="3.2" data-duration="2.3">
+      <span>No cloud.</span>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Drive slides in and seats into the port (resting state keeps its tip
+    // on screen at frame 0 so the thumbnail is never just the background)
+    tl.fromTo(
+      "#plug-drive .drive-inner",
+      { x: -430 },
+      { x: 0, duration: 1.05, ease: "power3.out" },
+      0.35,
+    );
+    // Port takes a small bump on contact
+    tl.fromTo(
+      "#plug-port .port-inner",
+      { scale: 1 },
+      { scale: 1.06, duration: 0.1, ease: "power2.out", yoyo: true, repeat: 1 },
+      1.38,
+    );
+    // LED lights — the brand orange is born here
+    tl.fromTo(
+      "#plug-drive .led",
+      { opacity: 0, boxShadow: "0 0 0px rgba(255,106,61,0)" },
+      { opacity: 1, backgroundColor: "#ff6a3d", boxShadow: "0 0 34px rgba(255,106,61,0.55)", duration: 0.28, ease: "power2.out" },
+      1.5,
+    );
+    // Title lines land on the voice's beats
+    for (const [id, at] of [["#plug-line-1 span", 2.0], ["#plug-line-2 span", 2.6], ["#plug-line-3 span", 3.2]]) {
+      tl.fromTo(id, { opacity: 0, filter: "blur(10px)", y: 14 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.35, ease: "power4.out" }, at);
+    }
+    window.__timelines["plug"] = tl;
+  </script>
+</template>
