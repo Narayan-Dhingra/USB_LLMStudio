@@ -2120,7 +2120,8 @@ function ModelManager({
                     model.resolution && model.resolution !== "N/A" ? model.resolution : null,
                     model.format && !/^(safetensors|gguf)$/i.test(model.format) ? model.format : null,
                   ].filter(Boolean).join(" · ");
-                  const pageLink = model.pageUrl || model.url;
+                  const rawPageLink = model.pageUrl || model.url;
+                  const pageLink = /^https?:\/\//i.test(String(rawPageLink || "").trim()) ? rawPageLink : "";
                   return (
                     <li
                       key={`${model.id || section.group}:${model.filename}`}

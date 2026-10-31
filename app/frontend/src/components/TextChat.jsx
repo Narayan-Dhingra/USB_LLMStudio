@@ -1209,11 +1209,15 @@ function TextChat({
                               <Globe2 size={13} aria-hidden="true" />
                               <span>Sources</span>
                             </div>
-                            {message.webSources.map((source, sourceIndex) => (
-                              <a key={`${source.url}-${sourceIndex}`} href={source.url} target="_blank" rel="noreferrer">
-                                [{source.index || sourceIndex + 1}] {source.title || source.url}
-                              </a>
-                            ))}
+                            {message.webSources.map((source, sourceIndex) => {
+                              const href = safeExternalUrl(source.url);
+                              if (!href) return null;
+                              return (
+                                <a key={`${href}-${sourceIndex}`} href={href} target="_blank" rel="noreferrer">
+                                  [{source.index || sourceIndex + 1}] {source.title || href}
+                                </a>
+                              );
+                            })}
                           </div>
                         )}
 
@@ -1267,6 +1271,9 @@ async function extractPdfText(file) {
   return pages.join("\n\n");
 }
 
+// Only real web links are clickable; anything else (javascript:, data:) renders as text.
+const safeExternalUrl = (url) => (/^https?:\/\//i.test(String(url || "").trim()) ? url : "");
+
 function MathFormula({ tex, display = false }) {
   const html = katex.renderToString(tex, { displayMode: display, throwOnError: false, output: "html" });
   return display
@@ -1301,8 +1308,10 @@ function parseInlineMarkdown(text) {
     if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
       const match = part.match(/\[(.*?)\]\((.*?)\)/);
       if (match) {
+        const href = safeExternalUrl(match[2]);
+        if (!href) return match[1];
         return (
-          <a key={idx} href={match[2]} target="_blank" rel="noopener noreferrer" className="markdown-link">
+          <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className="markdown-link">
             {match[1]}
           </a>
         );

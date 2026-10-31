@@ -58,25 +58,44 @@ function getUrlTargetIssue(rawUrl) {
   return "";
 }
 
-// Also resolves the hostname and refuses when any answer is a private address.
+// Resolves the URL, refuses when any answer is a private address, and returns
+// the validated public address so callers can connect to THAT exact IP.
 // Call this on every redirect hop, not just the first URL.
-async function resolveUrlTargetIssue(rawUrl) {
+async function resolvePublicTarget(rawUrl) {
   const issue = getUrlTargetIssue(rawUrl);
-  if (issue) return issue;
-  const host = new URL(String(rawUrl).trim()).hostname.toLowerCase().replace(/^\[|\]$/g, "");
-  if (net.isIP(host)) return "";
+  if (issue) return { issue };
+  const parsed = new URL(String(rawUrl).trim());
+  const host = parsed.hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  const port = parsed.port || "";
+  if (net.isIP(host)) return { host, port }; // literal IP was already range-checked
   let records;
   try {
     records = await dns.lookup(host, { all: true, verbatim: false });
   } catch (_) {
-    return ""; // unresolvable hosts fail the request itself with the real error
+    return { host, port }; // unresolvable hosts fail the request with the real error
   }
-  for (const record of records) {
-    if (isPrivateIp(record.address)) {
-      return `That URL resolves to a local or private address (${host} -> ${record.address}), which the studio will not contact.`;
-    }
+  const privateRecord = records.find((record) => isPrivateIp(record.address));
+  if (privateRecord) {
+    return { issue: `That URL resolves to a local or private address (${host} -> ${record.address}), which the studio will not contact.` };
   }
-  return "";
+  const publicRecord = records.find((record) => !isPrivateIp(record.address));
+  if (!publicRecord) return { host, port };
+  return { host, port, address: publicRecord.address, family: publicRecord.family };
 }
 
-module.exports = { isPrivateIp, getUrlTargetIssue, resolveUrlTargetIssue };
+// Request options for http(s).get that connect to the validated IP while the
+// original hostname drives TLS SNI/certificate checks and the Host header.
+// This closes the resolve->connect gap a DNS rebind could otherwise exploit.
+function pinnedRequestOptions(target, headers = {}) {
+  const hostHeader = target.host.includes(":") ? `[${target.host}]` : target.host;
+  const merged = { ...headers, Host: target.port ? `${hostHeader}:${target.port}` : hostHeader };
+  if (!target.address) return { headers: merged };
+  return {
+    hostname: target.address,
+    family: target.family,
+    servername: target.host,
+    headers: merged,
+  };
+}
+
+module.exports = { isPrivateIp, getUrlTargetIssue, resolvePublicTarget, pinnedRequestOptions };

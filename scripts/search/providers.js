@@ -1,4 +1,5 @@
 const https = require("https");
+const { resolvePublicTarget, pinnedRequestOptions } = require("../lib/url-safety.cjs");
 
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) USBLLMStudio/1.0";
 
@@ -17,15 +18,17 @@ function stripTags(value) {
   return decodeHtml(String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim());
 }
 
-function requestText(url, timeoutMs = 12000) {
+async function requestText(url, timeoutMs = 12000) {
+  // Validate the target and pin the connection to the IP we actually checked.
+  const target = await resolvePublicTarget(url);
+  if (target.issue) throw new Error(target.issue);
   return new Promise((resolve, reject) => {
-    const req = https.get(url, {
-      headers: {
-        "User-Agent": USER_AGENT,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      },
-      timeout: timeoutMs,
-    }, (res) => {
+    const options = pinnedRequestOptions(target, {
+      "User-Agent": USER_AGENT,
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    });
+    options.timeout = timeoutMs;
+    const req = https.get(url, options, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         res.resume();
         resolve(requestText(new URL(res.headers.location, url).toString(), timeoutMs));

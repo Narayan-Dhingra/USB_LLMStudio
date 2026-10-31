@@ -1,7 +1,7 @@
 const http = require("http");
 const https = require("https");
 const zlib = require("zlib");
-const { resolveUrlTargetIssue } = require("../lib/url-safety.cjs");
+const { resolvePublicTarget, pinnedRequestOptions } = require("../lib/url-safety.cjs");
 
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) USBLLMStudio/1.0";
 
@@ -17,9 +17,10 @@ function decodeHtml(value) {
     .replace(/&#(\d+);/g, (_, num) => String.fromCodePoint(parseInt(num, 10)));
 }
 
-async function assertPublicUrl(rawUrl) {
-  const issue = await resolveUrlTargetIssue(rawUrl);
-  if (issue) throw new Error(issue);
+async function assertPublicTarget(rawUrl) {
+  const target = await resolvePublicTarget(rawUrl);
+  if (target.issue) throw new Error(target.issue);
+  return target;
 }
 
 function stripHtml(html) {
@@ -56,21 +57,20 @@ function decodeBody(buffer, encoding) {
 }
 
 async function fetchPageContent(rawUrl, options = {}, redirects = 0) {
-  await assertPublicUrl(rawUrl);
+  const target = await assertPublicTarget(rawUrl);
   const timeoutMs = Math.max(3000, Math.min(20000, Number(options.timeoutMs) || 10000));
   const maxBytes = Math.max(64 * 1024, Math.min(2 * 1024 * 1024, Number(options.maxBytes) || 768 * 1024));
   const parsed = new URL(rawUrl);
   const transport = parsed.protocol === "https:" ? https : http;
+  const requestOptions = pinnedRequestOptions(target, {
+    "User-Agent": USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.2",
+    "Accept-Encoding": "gzip, deflate, br",
+  });
+  requestOptions.timeout = timeoutMs;
 
   return new Promise((resolve, reject) => {
-    const req = transport.get(parsed, {
-      headers: {
-        "User-Agent": USER_AGENT,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.2",
-        "Accept-Encoding": "gzip, deflate, br",
-      },
-      timeout: timeoutMs,
-    }, async (res) => {
+    const req = transport.get(parsed, requestOptions, async (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects < 3) {
         res.resume();
         try {

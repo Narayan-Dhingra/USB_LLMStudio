@@ -12,7 +12,7 @@ const path     = require("path");
 const { spawn, spawnSync, execSync, exec, execFile, execFileSync } = require("child_process");
 const { comprehensiveWebSearch } = require("../search/core");
 const { detectModelKindCached } = require("./model-kind.cjs");
-const { getUrlTargetIssue, resolveUrlTargetIssue } = require("../lib/url-safety.cjs");
+const { getUrlTargetIssue, resolvePublicTarget, pinnedRequestOptions } = require("../lib/url-safety.cjs");
 
 // HTTP keep-alive agent for llama-server (eliminates TCP handshake per request)
 const llmHttpAgent = new http.Agent({
@@ -5165,7 +5165,7 @@ function installImageBackendArchive(zipPath, backend, runtimeOnly = false) {
   }
 }
 
-function startImageBackendDownload(backendId, redirectCount = 0, redirectUrl = "", stage = "main") {
+async function startImageBackendDownload(backendId, redirectCount = 0, redirectUrl = "", stage = "main") {
   const isRuntimeStage = stage === "runtime";
   if (downloadState.active && redirectCount === 0 && !isRuntimeStage) {
     throw new Error("Another download is already active.");
@@ -5182,12 +5182,12 @@ function startImageBackendDownload(backendId, redirectCount = 0, redirectUrl = "
 
   fs.mkdirSync(TOOLS, { recursive: true });
   const url = redirectUrl || (isRuntimeStage ? backend.runtimeUrl : backend.url);
-  const targetIssue = getUrlTargetIssue(url);
-  if (targetIssue) {
-    if (redirectCount === 0) throw new Error(targetIssue);
+  const target = await resolvePublicTarget(url);
+  if (target.issue) {
+    if (redirectCount === 0) throw new Error(target.issue);
     downloadState.active = false;
-    downloadState.error = targetIssue;
-    console.error(`  [backend-download] Refused: ${targetIssue}`);
+    downloadState.error = target.issue;
+    console.error(`  [backend-download] Refused: ${target.issue}`);
     return;
   }
   const filename = isRuntimeStage ? `${backend.id}-runtime.zip` : `${backend.id}-backend.zip`;
@@ -5226,12 +5226,10 @@ function startImageBackendDownload(backendId, redirectCount = 0, redirectUrl = "
 
   fileStream.on("error", (err) => failDownload(`Could not write ${filename}: ${err.message}`, err));
   const client = url.startsWith("https") ? https : http;
-  const request = client.get(url, {
-    headers: {
-      "User-Agent": "USB-LLMStudio/1.0 (+https://github.com/devinwarp/USB_LLMStudio)",
-      "Accept": "application/zip, application/octet-stream, */*",
-    },
-  }, (response) => {
+  const request = client.get(url, pinnedRequestOptions(target, {
+    "User-Agent": "USB-LLMStudio/1.0",
+    "Accept": "application/zip, application/octet-stream, */*",
+  }), (response) => {
     activeDownload = { request, fileStream, destPath, tempPath };
     if ([301, 302, 303, 307, 308].includes(response.statusCode)) {
       const nextUrl = response.headers.location ? new URL(response.headers.location, url).toString() : "";
@@ -5297,7 +5295,8 @@ function startImageBackendDownload(backendId, redirectCount = 0, redirectUrl = "
           if (!isRuntimeStage && backend.runtimeUrl) {
             activeDownload = null;
             console.log(`  [backend-download] Installed ${backend.label} backend, fetching runtime libraries`);
-            startImageBackendDownload(backend.id, 0, "", "runtime");
+            startImageBackendDownload(backend.id, 0, "", "runtime")
+              .catch((err) => console.error(`  [backend-download] Runtime fetch failed: ${err.message}`));
             return;
           }
           downloadState.active = false;
@@ -5429,13 +5428,14 @@ async function startModelDownload(url, overrideFilename = null, targetDir = MODE
     kind,
   };
 
-  // SSRF guard: refuse downloads aimed at this machine or private networks.
-  // Redirects recurse through this function, so every hop is re-checked.
-  const targetIssue = await resolveUrlTargetIssue(url);
-  if (targetIssue) {
+  // SSRF guard: refuse downloads aimed at this machine or private networks and
+  // connect to the exact address we validated so DNS can't be rebound between
+  // the check and the request. Redirects recurse, so every hop is re-checked.
+  const target = await resolvePublicTarget(url);
+  if (target.issue) {
     downloadState.active = false;
-    downloadState.error = targetIssue;
-    console.error(`  [download] Refused ${filename}: ${targetIssue}`);
+    downloadState.error = target.issue;
+    console.error(`  [download] Refused ${filename}: ${target.issue}`);
     return;
   }
 
@@ -5467,13 +5467,11 @@ async function startModelDownload(url, overrideFilename = null, targetDir = MODE
   });
   
   const client = url.startsWith("https") ? https : http;
-  const request = client.get(url, {
-    headers: {
-      "User-Agent": "USB-LLMStudio/1.0 (+https://github.com/devinwarp/USB_LLMStudio)",
-      "Accept": "application/octet-stream, application/x-safetensors, */*",
-      "Referer": "https://huggingface.co/",
-    },
-  }, (response) => {
+  const request = client.get(url, pinnedRequestOptions(target, {
+    "User-Agent": "USB-LLMStudio/1.0",
+    "Accept": "application/octet-stream, application/x-safetensors, */*",
+    "Referer": "https://huggingface.co/",
+  }), (response) => {
     activeDownload = { request, fileStream, destPath, tempPath };
     // Handle redirects (HuggingFace resolve URLs redirect to Cloudfront/S3)
     if ([301, 302, 303, 307, 308].includes(response.statusCode)) {
@@ -5575,7 +5573,17 @@ async function startModelDownload(url, overrideFilename = null, targetDir = MODE
           if (destPath.toLowerCase().endsWith(".zip")) {
             try {
               // execFileSync: no shell, so a filename containing quotes can't inject commands
-              execFileSync("unzip", ["-o", destPath, "-d", path.dirname(destPath)], { stdio: "ignore" });
+              // zip-slip check: refuse archives whose entries escape the destination folder
+              const listing = execFileSync("unzip", ["-Z1", destPath], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+              const unsafeEntry = listing.split("\n").some((entry) => {
+                const name = entry.trim();
+                return name.startsWith("/") || /^[A-Za-z]:[\\/]/.test(name) || name.split(/[\\/]/).includes("..");
+              });
+              if (unsafeEntry) {
+                console.error("  [download] Refused to extract zip containing unsafe paths:", destPath);
+              } else {
+                execFileSync("unzip", ["-o", destPath, "-d", path.dirname(destPath)], { stdio: "ignore" });
+              }
               fs.unlinkSync(destPath);
             } catch(err) {
               console.error("Failed to unzip", err);
@@ -6187,6 +6195,24 @@ const server = http.createServer(async (req, res) => {
     }
     innerWriteHead.call(res, statusCode, ...args);
   };
+  // Baseline hardening headers on every response (CSP only affects documents).
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Referrer-Policy", "no-referrer");
+  res.setHeader("Content-Security-Policy", [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self' 'unsafe-inline'", // React style attributes and KaTeX output need inline styles
+    "img-src 'self' data: blob:",
+    "font-src 'self' data:",
+    "media-src 'self' blob:",
+    "connect-src 'self'",
+    "worker-src 'self' blob:", // pdf.js worker is bundled; blob covers fallback
+    "object-src 'none'",
+    "base-uri 'none'",
+    "frame-ancestors 'none'",
+    "form-action 'self'",
+  ].join("; "));
 
   if (!requestOriginAllowed(req)) {
     return json(res, 403, { ok: false, error: "This website is not allowed to use the local API." });
@@ -7296,7 +7322,7 @@ async function getLlmfitRecommendations(useCase = "chat", limit = 10) {
     if (downloadState.active) return json(res, 409, { ok: false, error: "Another download is already active." });
     try {
       const backendId = String(body.backend_id || body.backendId || body.id || "");
-      startImageBackendDownload(backendId);
+      await startImageBackendDownload(backendId);
       return json(res, 200, { ok: true, message: "Backend download started", backendId });
     } catch (err) {
       return json(res, 400, { ok: false, error: err.message || String(err) });
