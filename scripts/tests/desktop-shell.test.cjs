@@ -34,7 +34,12 @@ test("desktop shell config points at files that exist", () => {
 
 test("desktop shell starts the same server script and port variable the launchers use", () => {
   const shell = fs.readFileSync(path.join(tauriDir, "src/main.rs"), "utf8");
-  const server = fs.readFileSync(path.join(root, "scripts/server/serve.cjs"), "utf8");
+  // Read every server module so the check survives serve.cjs being split into route files
+  const serverDir = path.join(root, "scripts/server");
+  const server = fs.readdirSync(serverDir)
+    .filter((name) => name.endsWith(".cjs"))
+    .map((name) => fs.readFileSync(path.join(serverDir, name), "utf8"))
+    .join("\n");
   const script = shell.match(/const SERVER_SCRIPT: &\[&str\] = &\[([^\]]+)\]/)[1]
     .split(",").map((part) => part.trim().replace(/"/g, "")).join("/");
   assert.ok(fs.existsSync(path.join(root, script)));
