@@ -9,7 +9,12 @@ const loadTalk = () => import(pathToFileURL(path.join(root, "app/frontend/src/ut
 
 test("talk mode TTS chunk limit matches the server's synthesizeTts limit", async () => {
   const { TTS_MAX_TEXT_CHARS, TALK_CHUNK_MAX_CHARS } = await loadTalk();
-  const server = fs.readFileSync(path.join(root, "scripts/server/serve.cjs"), "utf8");
+  // Read every server module so the check survives serve.cjs being split into route files
+  const serverDir = path.join(root, "scripts/server");
+  const server = fs.readdirSync(serverDir)
+    .filter((name) => name.endsWith(".cjs"))
+    .map((name) => fs.readFileSync(path.join(serverDir, name), "utf8"))
+    .join("\n");
   const limit = Number(server.match(/cleanedText\.length > (\d+)/)?.[1]);
   assert.equal(TTS_MAX_TEXT_CHARS, limit);
   assert.ok(TALK_CHUNK_MAX_CHARS <= TTS_MAX_TEXT_CHARS);
