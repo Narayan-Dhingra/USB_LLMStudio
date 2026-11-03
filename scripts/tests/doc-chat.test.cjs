@@ -190,11 +190,18 @@ test("doc chat stores vectors when an embedder is configured and falls back with
   }
 });
 
-test("serve.cjs mounts the doc chat routes", () => {
-  const server = fs.readFileSync(path.join(root, "scripts/server/serve.cjs"), "utf8");
-  assert.match(server, /require\("\.\/doc-chat\.cjs"\)\.createDocChat\(\)/);
-  assert.match(server, /if \(await docChat\.handle\(req, res\)\) return;/);
-  assert.ok(server.indexOf("docChat.handle(req, res)") < server.indexOf('"Unknown API endpoint"'));
+test("the server mounts the doc chat routes before the unknown-API fallback", () => {
+  // Look in every server module so the check survives serve.cjs being split into route files
+  const serverDir = path.join(root, "scripts/server");
+  const host = fs.readdirSync(serverDir)
+    .filter((name) => name.endsWith(".cjs") && name !== "doc-chat.cjs")
+    .map((name) => fs.readFileSync(path.join(serverDir, name), "utf8"))
+    .find((source) => source.includes("docChat.handle(req, res)"));
+  assert.ok(host, "no server module mounts docChat.handle");
+  assert.match(host, /require\("\.\/doc-chat\.cjs"\)\.createDocChat\(\)/);
+  assert.match(host, /if \(await docChat\.handle\(req, res\)\) return;/);
+  const fallback = host.indexOf('"Unknown API endpoint"');
+  assert.ok(fallback === -1 || host.indexOf("docChat.handle(req, res)") < fallback);
 });
 
 test("client builds a cited prompt from search results using the shared routes", async () => {
